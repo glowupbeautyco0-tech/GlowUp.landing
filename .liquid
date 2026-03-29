@@ -1,0 +1,147 @@
+{% schema %}
+{
+  "name": "GlowUp Landing",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Producto",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Seleccionar producto"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "GlowUp Landing"
+    }
+  ]
+}
+{% endschema %}
+
+<div class="glowup-container">
+
+  <!-- HERO -->
+  <div class="glowup-hero">
+    <h1>Transforma tu piel en días ✨</h1>
+    <p>Skincare viral con resultados reales</p>
+    <a href="#productos" class="glowup-btn">Comprar ahora</a>
+  </div>
+
+  <!-- TRUST -->
+  <div class="glowup-trust">
+    <div>⭐ +10.000 clientes</div>
+    <div>🚚 Envíos Colombia</div>
+    <div>💳 Pago contra entrega</div>
+  </div>
+
+  <!-- PRODUCTS -->
+  <div id="productos" class="glowup-products">
+    <h2>🔥 Más vendidos</h2>
+
+    <div class="glowup-grid">
+      {% for block in section.blocks %}
+        {% assign product = all_products[block.settings.product] %}
+        {% if product %}
+        <div class="glowup-product">
+          <img src="{{ product.featured_image | image_url: width: 400 }}">
+          <h3>{{ product.title }}</h3>
+          <div class="glowup-price">{{ product.price | money }}</div>
+          <a href="{{ product.url }}" class="glowup-btn">Comprar</a>
+        </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- URGENCY -->
+  <div class="glowup-urgency">
+    ⚠️ Stock limitado - Alta demanda
+  </div>
+
+  <!-- TESTIMONIOS -->
+  <div class="glowup-testimonials">
+    <h2>Resultados reales 💖</h2>
+    <p>"Mi piel cambió en una semana 😍"</p>
+    <p>"Súper recomendado, llegó rápido"</p>
+  </div>
+
+</div>
+
+<style>
+.glowup-container {
+  font-family: Arial, sans-serif;
+}
+
+/* HERO */
+.glowup-hero {
+  text-align: center;
+  padding: 80px 20px;
+  background: linear-gradient(180deg, #fff, #ffe6f0);
+}
+.glowup-hero h1 {
+  font-size: 36px;
+}
+.glowup-btn {
+  background: #ff2e75;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 30px;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 15px;
+}
+
+/* TRUST */
+.glowup-trust {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+  font-size: 14px;
+}
+
+/* PRODUCTS */
+.glowup-products {
+  padding: 50px 20px;
+  text-align: center;
+}
+.glowup-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+.glowup-product {
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+.glowup-product img {
+  width: 100%;
+  border-radius: 10px;
+}
+.glowup-price {
+  color: #ff2e75;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+/* URGENCY */
+.glowup-urgency {
+  background: black;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+/* TESTIMONIOS */
+.glowup-testimonials {
+  background: #fff0f5;
+  padding: 40px;
+  text-align: center;
+}
+</style>
