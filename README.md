@@ -1,1 +1,1 @@
-# GlowUp.landing.liquid
+# GlowUp-landing.liquid
